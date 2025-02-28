@@ -1,0 +1,20 @@
+#------------------------------------------------------------------------------
+# Holzmann CFD's
+#
+# T U T O R I A L    S T R U C T U R E
+# |
+# |
+# |- cad        : Informations about geometry, post-processing, bg-mesh etc.
+# |- 0.orig     : Original boundary conditions; might be manipulated during run
+# |- constant   : Mesh information and thermodynamics/mesh motion/turbulence
+# |             : as well as geometric information for snappyHexMesh
+# |- system     : settings for all applications
+# |- run        : Automatic run script that tells you all steps
+# |- clean      : Clean the tutorial to original form
+# |- .files     : Additional functions and stuff
+#
+#------------------------------------------------------------------------------
+#
+# Each file can contain a lot of comments and additional information
+#
+#------------------------------------------------------------------------------

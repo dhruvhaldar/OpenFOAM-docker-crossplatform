@@ -1,0 +1,135 @@
+#!/bin/bash
+#
+#-------------------------------------------------#
+# Contributor: Tobias Holzmann                    #
+# Updated on:  26 Oktober 2024                    #
+#-------------------------------------------------#
+# Topic:       Catalyst Heat-Up Case              #
+# OpenFOAM:    version 12 (Foundation)            #
+#-------------------------------------------------#
+# Website:     https://Holzmann-cfd.com           #
+# Email:       community@Holzmann-cfd.com         #
+#-------------------------------------------------#
+
+
+#------------------------------------------------------------------------------
+foamVersion="OpenFOAM-12"
+
+
+#------------------------------------------------------------------------------
+cd ${0%/*} || exit 1
+clear
+source clean
+source .color
+source .preamble
+
+
+#------------------------------------------------------------------------------
+if [ -f cad/backgroundMesh.unv ];
+then
+    echo "  - Background mesh exist, proceed..."
+else
+    echo "  - No background mesh exist, please build a mesh"
+    echo ""
+    exit
+fi
+
+
+#------------------------------------------------------------------------------
+echo -e "\n
+Start meshing
+-------------------------------------------------------------------------------
+"
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Create background mesh"
+ideasUnvToFoam cad/backgroundMesh.unv > logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Meshing the exhaust pipe + SCR's using snappyHexMesh"
+snappyHexMesh -overwrite >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -n "  - Split mesh into the single non-connected regions based on "
+echo -e "the SRC zones - 5 regions in total"
+splitMeshRegions -cellZones >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Move the SCR region meshes into to correct folders"
+mv 1e-06/SCR1/polyMesh constant/SCR1
+mv 1e-06/SCR2/polyMesh constant/SCR2
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Move the fluid region with SCR cellZones into to correct folder"
+mv constant/polyMesh constant/fluid
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Remove the other split meshes and non-needed meshes"
+rm -r 1e-06 constant/cellToRegion*
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Combine and rename the boundaries"
+createPatch -region SCR1 -overwrite >> logMeshing
+createPatch -region SCR2 -overwrite >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "\n
+-------------------------------------------------------------------------------
+End Meshing\n
+"
+
+
+#------------------------------------------------------------------------------
+echo -e "  - Copy 0.orig to 0"
+rm -rf 0
+cp -r 0.orig 0
+
+
+#------------------------------------------------------------------------------
+if [ `which foamMultiRun` ]
+then
+
+    #--------------------------------------------------------------------------
+    echo -e "  - Get core numbers"
+    nC=`cat system/decomposeParDict | grep "numberOf" | cut -d' ' -f2 | \
+        cut -d';' -f1`
+
+    #--------------------------------------------------------------------------
+    echo -e "  - Decompose the stuff"
+    decomposePar -allRegions >> logSolve
+
+
+    #--------------------------------------------------------------------------
+    echo -e "  - Renumber the mesh"
+    mpirun -np $nC renumberMesh -region SCR1 -overwrite -parallel >> logSolve
+    mpirun -np $nC renumberMesh -region SCR2 -overwrite -parallel >> logSolve
+    mpirun -np $nC renumberMesh -region fluid -overwrite -parallel >> logSolve
+
+
+    #--------------------------------------------------------------------------
+    echo -e "  - Start simulation with foamMultiRun (a few hours) maxCo = 40"
+    mpirun -np $nC foamMultiRun -parallel >> logSolve
+
+
+else
+    #--------------------------------------------------------------------------
+    echo -e "  - Can not start simulation, '${RED}chtMultiRegionFoam$NC'"
+    echo -e " not available"
+
+
+fi
+
+
+#------------------------------------------------------------------------------
+echo -e "  - End\n\n"
+
+
+#------------------------------------------------------------------------------

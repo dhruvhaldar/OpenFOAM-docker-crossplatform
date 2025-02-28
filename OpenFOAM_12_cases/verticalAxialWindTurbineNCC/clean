@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+#----------------------------------------------#
+# Contributor: Tobias Holzmann                 #
+# Last Change: October 2016                    #
+# Email:       Tobias.Holzmann@Holzmann-cfd.de #
+# Location:    www.Holzmann-cfd.de             #
+#----------------------------------------------#
+
+
+#-------------------------------------------------------------------------------
+cd ${0%/*} || exit 1
+clear
+
+
+#-------------------------------------------------------------------------------
+foamCleanTutorials
+rm -rf 0 log* constant/poly* constant/extended* const*/triSur*/*.eMesh
+
+
+#-------------------------------------------------------------------------------

@@ -1,0 +1,160 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Website:  www.openfoam.org                      |
+|   \\  /    A nd           | Version:  12                                    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Porosity modeling for the SCR at position 1
+// Active in cellZone named SCR1
+SCR1
+{
+    // fvOption type
+    type            explicitPorositySource;
+
+    explicitPorositySourceCoeffs
+    {
+        selectionMode   cellZone;
+        cellZone        SCR1;
+        active          yes;
+
+        // FOAM offers different porosity models. Here we use the
+        // Darcy Forchheimer equation. d and f are model parameters
+        // More information on https://Holzmann-cfd.com
+        type            DarcyForchheimer;
+
+        d           (0 0 0);
+        f           (-1000 -1000 140);
+
+        coordinateSystem
+        {
+            type    cartesian;
+            origin  (0 0 0);
+            coordinateRotation
+            {
+                type    axesRotation;
+                e1      (1 0 0);
+                e2      (0 1 0);
+            }
+        }
+    }
+}
+
+// Porosity modeling for the SCR at position 2
+// Active in cellZone named SCR2
+SCR2
+{
+    type            explicitPorositySource;
+
+    explicitPorositySourceCoeffs
+    {
+        selectionMode   cellZone;
+        cellZone        SCR2;
+        active          yes;
+
+        // FOAM offers different porosity models. Here we use the
+        // Darcy Forchheimer equation. d and f are model parameters
+        // More information on https://Holzmann-cfd.com
+        type            DarcyForchheimer;
+
+        d           (0 0 0);
+        f           (-1000 -1000 140);
+
+        coordinateSystem
+        {
+            type    cartesian;
+            origin  (0 0 0);
+            coordinateRotation
+            {
+                type    axesRotation;
+                e1      (1 0 0);
+                e2      (0 1 0);
+            }
+        }
+    }
+}
+
+//- This is an arbitrary name of the object
+//  Has to set in the other region (other region -> SCR1)
+Coupling
+{
+    // All information in system/SCR*/fvOptions
+    type                interRegionHeatTransfer;
+    libs                ("libinterRegionFvModels.so");
+
+    interRegionHeatTransferCoeffs
+    {
+        master              true;
+        heatTransferCoefficientModel                constant;
+
+        nbrRegionName       SCR1;
+        interpolationMethod intersection;
+        nbrModel            Coupling;
+        semiImplicit        false;
+        Av                  20000;          // Av as described by OpenFOAM by "Area per unit Volume" 
+                                            // which has the dimension of "1/meter"
+                                            // This value describes the thermal length of the porous media
+                                            // Some characteristic lengths of thermal systems are:
+                                            //
+                                            //  Plate: thickness
+                                            //  Fin: thickness/2
+                                            //  Long cylinder: diameter/4
+                                            //  Sphere: diameter/6
+                                            //
+                                            // For arbitrary shapes, it may be useful to consider the characteristic length to be volume / surface area. 
+                                            //
+                                            // Assumption here: porous media is made from corrugated fiberboard with a thickness of 0.1 mm
+                                            // 1 / (0.00005 m) = 20000 1/m
+
+        htc                 80;
+    }
+}
+
+
+//- This is an arbitrary name of the object
+//  Has to set in the other region (other region -> SCR2)
+Coupling2
+{
+    // All information in system/SCR*/fvOptions
+    type                interRegionHeatTransfer;
+    libs                ("libinterRegionFvModels.so");
+
+    interRegionHeatTransferCoeffs
+    {
+        master              true;
+        heatTransferCoefficientModel                constant;
+
+        nbrRegionName       SCR2;
+        interpolationMethod intersection;
+        nbrModel            Coupling;
+        semiImplicit        false;
+        Av                  10000;          // Av as described by OpenFOAM by "Area per unit Volume" 
+                                            // which has the dimension of "1/meter"
+                                            // This value describes the thermal length of the porous media
+                                            // Some characteristic lengths of thermal systems are:
+                                            //
+                                            //  Plate: thickness
+                                            //  Fin: thickness/2
+                                            //  Long cylinder: diameter/4
+                                            //  Sphere: diameter/6
+                                            //
+                                            // For arbitrary shapes, it may be useful to consider the characteristic length to be volume / surface area. 
+                                            //
+                                            // Assumption here: porous media is made from corrugated fiberboard with a thickness of 0.2 mm
+                                            // 1 / (0.0001 m) = 10000 1/m
+
+        htc                 120;
+    }
+}
+
+
+// ************************************************************************* //

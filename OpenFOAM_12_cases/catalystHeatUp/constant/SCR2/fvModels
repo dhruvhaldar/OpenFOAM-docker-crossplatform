@@ -1,0 +1,35 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Website:  www.openfoam.org                      |
+|   \\  /    A nd           | Version:  12                                    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+//- This is an arbitrary name of the object
+//  Has to set in the other region (other region -> fluid)
+Coupling
+{
+    type                interRegionHeatTransfer;
+    libs                ("libinterRegionFvModels.so");
+
+        master              false;
+        nbrRegionName       fluid;              // << Neigbour region name
+        interpolationMethod intersection;       // << Different possibilites
+                                                //    set wrong name and start
+                                                //    the solver to see the
+                                                //    options (banana trick)
+        semiImplicit        false;              // Semi-Implicit calculation
+}
+
+
+// ************************************************************************* //

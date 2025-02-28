@@ -1,0 +1,169 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Website:  www.openfoam.org                      |
+|   \\  /    A nd           | Version:  12                                    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    rho
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-7;
+        relTol          0.1;
+    }
+
+    rhoFinal
+    {
+        $rho;
+        tolerance       1e-7;
+        relTol          0;
+    }
+
+    p_rgh
+    {
+        solver           GAMG;
+        tolerance        1e-7;
+        relTol           0.01;
+        maxIter          30;
+
+        smoother         GaussSeidel;
+
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        tolerance        1e-7;
+        relTol           0;
+    }
+
+    "(U|h|k|omega|R)"
+    {
+        solver           PBiCG;
+        preconditioner   DILU;
+        tolerance        1e-7;
+        relTol           0.1;
+    }
+
+    "(U|h|k|omega|R)Final"
+    {
+        $U;
+        tolerance        1e-7;
+        relTol           0;
+    }
+}
+
+PIMPLE
+{
+    //- Correct the fluxes based on mesh motion. See header files of the solver
+    correctPhi          false;
+
+    //- Turn on of off the momentum predictor
+    //  For high-viscose fluids it is practicable to deactivate it
+    momentumPredictor   true;
+
+    //- Calculate the turbulence in each outer loop or only at the end of one
+    //  time step calculation. High turbulent flow calculation should calculate
+    //  the turbulence properties in each outer loop
+    turbOnFinalIterOnly true;
+
+    //- Use the SIMPLE(C) := C =  consistent / corrected algorithm for 
+    //  the outer corrections. A pressure term that is neglected in the 
+    //  SIMPLE algorithm is included. More inner calculations but the
+    //  coupling U-p in general is solved faster
+    consistent          false;
+
+    //- Mesh non-orthogonality correctors. Foam handles non-orthogonality quite
+    //  good, so there is no need to use or only up to 2 - 3
+    nNonOrthogonalCorrectors 1;
+
+    //- Pressure corrections
+    nCorrectors         2;
+
+    //- If the transient solution tends towards a steady state solution,
+    //  end the calculation after the residual control is reached
+    residualControl
+    {
+        p_rgh   5e-4;
+        U       1e-5;
+        h       1e-5;
+    }
+
+    //- Control over each time step. The outer loops are recalculated 
+    //  till the residuals are reached. For outer loops, we can use 
+    //  under-relaxation as it is kind of a SIMPLE loop. Stiff problems
+    //  can be handled and the time step can be increased. Further information
+    //  are given in the book Mathematics, Numerics, Derivations and OpenFOAM
+    outerCorrectorResidualControl
+    {
+        //- Weak control - bad accuracy but faster
+        p_rgh
+        {
+            relTol      0;
+            tolerance   5e-3;
+        }
+
+        U
+        {
+            relTol      0;
+            tolerance   1e-2;
+        }
+
+        h
+        {
+            relTol      0;
+            tolerance   5e-3;
+        }
+    }
+}
+
+//- Relaxation factors applied to the fields or equations in the outer loops
+//  If nOuterCorrectors is not used, no underrelaxation should be placed.
+//  Always use the *.Final factor too, only you really know what your are doing
+//  ++ Relaxation of the final outer correction is possible, if the residual
+//     controls are very strict. 
+relaxationFactors
+{
+    //- Relaxation of the fields: See doxygen
+    //  Range [0-1] while 0 does not change the field (no sense)
+    fields
+    {
+        p_rgh           0.7;
+        p_rghFinal      1;
+    }
+    //- Relaxation of the equation: 
+    //  Factor: -1 disables the usage
+    //  Factor: 1 makes the matrix diagonal dominant or at least equal
+    //          --> matrix might be manipulated
+    //  Factor: 0 < alpha < 1; underrelaxation - make matrix diagonal dominat
+    //  Factor: alpha > 1; over-relaxation - make matrix diagonal dominat weak
+    //          --> can be used in some cases, generally not stable
+    equations
+    {
+        h               0.7;
+        hFinal          1;
+
+        k               0.7;
+        kFinal          1;
+
+        omega           0.7;
+        omegaFinal      1;
+
+        U               0.7;
+        UFinal          1;
+    }
+}
+
+// ************************************************************************* //

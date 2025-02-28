@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+#-------------------------------------------------#
+# Contributor: Tobias Holzmann                    #
+# Updated on:  10 Februar 2025                    #
+#-------------------------------------------------#
+# Topic:       6DOF and AMI within a VAWT         #
+# OpenFOAM:    version 12 (Foundation)            #
+#-------------------------------------------------#
+# Website:     https://Holzmann-cfd.com           #
+# Email:       community@Holzmann-cfd.com         #
+#-------------------------------------------------#
+
+
+#------------------------------------------------------------------------------
+foamVersion="OpenFOAM-12"
+
+
+#------------------------------------------------------------------------------
+cd ${0%/*} || exit 1
+clear
+source clean
+source .color
+source .preamble
+
+
+#------------------------------------------------------------------------------
+if [ -f cad/backgroundMesh.unv ];
+then
+    echo "   - Background mesh exist, proceed..."
+else
+    echo "   - No background mesh exist, please build one"
+    echo ""
+    exit
+fi
+
+
+#------------------------------------------------------------------------------
+echo -e "\n
+Start meshing
+-------------------------------------------------------------------------------
+"
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Create background mesh"
+ideasUnvToFoam cad/backgroundMesh.unv > logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Extract feature edges for AMI"
+surfaceFeatures >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Meshing using snappyHexMesh (~ 1 minute)"
+snappyHexMesh -overwrite >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Build 2D mesh"
+extrudeMesh >> logMeshing
+rm -rf 0
+
+
+#------------------------------------------------------------------------------
+#echo -e "   - Modify boundaries for AMI"
+#createPatch -overwrite  >> logMeshing
+#rm -rf 0 constant/polyMesh/sets
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Modify boundary type"
+changeDictionary  >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Create nonConformal patches"
+createNonConformalCouples -overwrite AMI AMI_slave >> logMeshing
+
+
+#------------------------------------------------------------------------------
+echo -e "\n
+-------------------------------------------------------------------------------
+End Meshing\n
+"
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Copy 0.org to 0"
+cp -r 0.orig 0
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Decompose the mesh"
+decomposePar > logSolve
+
+
+#--------------------------------------------------------------------------
+echo -e "   - Renumber the mesh / important for big meshes -> speed-up"
+mpirun -np 2 renumberMesh -overwrite -parallel -noZero >> logSolve
+
+
+#--------------------------------------------------------------------------
+echo -e "   - Start simulation (this will need some time)"
+mpirun -np 2 foamRun -parallel >> logSolve
+
+
+#------------------------------------------------------------------------------
+echo -e "   - End\n\n"
+
+
+#------------------------------------------------------------------------------

@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Website:  www.openfoam.org                      |
+|   \\  /    A nd           | Version:  12                                    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Do a synchronisation of coupled points after creation of any patches.
+// Note: this does not work with points that are on multiple coupled patches
+//       with transformations (i.e. cyclics).
+pointSync false;
+
+// Patches to create.
+patches
+(
+    //- region1 and region2 boundaries are introduced during the splitMesh
+    //  action. Since the fluid region was not defined as a cellZone, OpenFOAM
+    //  only knows two explicit defined regions namely SCR1 and SCR2
+    //  However, during splitting, OpenFOAM introduces new regions which are
+    //  not inherited by the <default> region0. Since SCR1 and SCR2 are
+    //  encapsulating differnt mesh regions, we get region0, region1 and region2
+    {
+        name            walls;
+        patchInfo
+        {
+            type        wall;
+        }
+
+        constructFrom patches;
+        patches (walls SCR1_to_region1 SCR1_to_region2);
+    }
+);
+
+// ************************************************************************* //
