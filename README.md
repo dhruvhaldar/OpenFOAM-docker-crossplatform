@@ -13,6 +13,9 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 3. **Output Visualization**
    Works best with native version of [Paraview](https://www.paraview.org/download/). Remember ⚡ to make an empty file `open.foam` inside your testcase, which can then be opened in Paraview.
 
+4. **Container support**
+   If you plan on making changes to the image, you can create your own image from a running Docker container by `docker commit running_container_name new_image_name`. More details [here](https://docs.docker.com/reference/cli/docker/container/commit/)
+
 ## 📦 Docker Image Details
 
 1. **Image Name**: `haldardhruv/ubuntu_bionic_openfoam2412-dhruv`
