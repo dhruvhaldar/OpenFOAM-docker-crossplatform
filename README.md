@@ -10,6 +10,9 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 2. **Volume Mounting**  
    The `run_openfoam.sh` script also mounts this Git repository as a Docker volume inside the image, ensuring you have access to all necessary files and configurations. 📂
 
+3. **Output Visualization**
+   Works best with native version of [Paraview](https://www.paraview.org/download/). Remember ⚡ to make an empty file `open.foam` inside your testcase, which can then be opened in Paraview.
+
 ## 📦 Docker Image Details
 
 1. **Image Name**: `haldardhruv/ubuntu_bionic_openfoam2412-dhruv`
