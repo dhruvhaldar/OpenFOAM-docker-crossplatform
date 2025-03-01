@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      binary;
+    class       pointVectorField;
+    location    "0";
+    object      pointDisplacement;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    front
+    {
+        type            empty;
+    }
+    back
+    {
+        type            empty;
+    }
+    bottom
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 
+0
+;
+    }
+    top
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    VAWT
+    {
+        type            calculated;
+    }
+    AMI
+    {
+        type            zeroGradient;
+    }
+    AMI_slave
+    {
+        type            zeroGradient;
+    }
+    nonConformalCyclic_on_AMI
+    {
+        type            nonConformalCyclic;
+    }
+    nonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalCyclic;
+    }
+    nonConformalError_on_AMI
+    {
+        type            nonConformalError;
+    }
+    nonConformalError_on_AMI_slave
+    {
+        type            nonConformalError;
+    }
+    procBoundary1to0
+    {
+        type            processor;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI_slave
+    {
+        type            processor;
+        patchType       nonConformalProcessorCyclic;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI
+    {
+        type            processor;
+        patchType       nonConformalProcessorCyclic;
+    }
+}
+
+
+// ************************************************************************* //

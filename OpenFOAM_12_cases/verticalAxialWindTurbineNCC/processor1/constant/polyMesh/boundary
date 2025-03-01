@@ -1,0 +1,154 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      binary;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+16
+(
+    inlet
+    {
+        type            patch;
+        nFaces          41;
+        startFace       18050;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          41;
+        startFace       18091;
+    }
+    front
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          9184;
+        startFace       18132;
+    }
+    back
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          9184;
+        startFace       27316;
+    }
+    bottom
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          0;
+        startFace       36500;
+    }
+    top
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          125;
+        startFace       36500;
+    }
+    VAWT
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          118;
+        startFace       36625;
+    }
+    AMI
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          128;
+        startFace       36743;
+    }
+    AMI_slave
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          130;
+        startFace       36871;
+    }
+    nonConformalCyclic_on_AMI
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       37001;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_AMI_slave;
+        transformType   none;
+        originalPatch   AMI;
+    }
+    nonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       37001;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_AMI;
+        transformType   none;
+        originalPatch   AMI_slave;
+    }
+    nonConformalError_on_AMI
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       37001;
+        originalPatch   AMI;
+    }
+    nonConformalError_on_AMI_slave
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       37001;
+        originalPatch   AMI_slave;
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        inGroups        List<word> 1(processor);
+        nFaces          190;
+        startFace       37001;
+        matchTolerance  0.0001;
+        myProcNo        1;
+        neighbProcNo    0;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalProcessorCyclic;
+        inGroups        List<word> 1(nonConformalProcessorCyclic);
+        nFaces          0;
+        startFace       37191;
+        matchTolerance  0.0001;
+        myProcNo        1;
+        neighbProcNo    0;
+        referPatch      nonConformalCyclic_on_AMI_slave;
+        originalPatch   AMI_slave;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI
+    {
+        type            nonConformalProcessorCyclic;
+        inGroups        List<word> 1(nonConformalProcessorCyclic);
+        nFaces          0;
+        startFace       37191;
+        matchTolerance  0.0001;
+        myProcNo        1;
+        neighbProcNo    0;
+        referPatch      nonConformalCyclic_on_AMI;
+        originalPatch   AMI;
+    }
+)
+
+// ************************************************************************* //

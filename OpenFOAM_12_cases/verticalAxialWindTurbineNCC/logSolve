@@ -1,0 +1,86 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : decomposePar
+Date   : Mar 01 2025
+Time   : 12:04:53
+Host   : "297a99731212"
+PID    : 260
+I/O    : uncollated
+Case   : /root/OpenFOAM/12/work/OpenFOAM_12_cases/verticalAxialWindTurbineNCC
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Calculating distribution of cells
+
+Selecting decomposer simple
+
+Finished decomposition in 0.003995 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 9185
+    Number of faces shared with processor 1 = 190
+    Number of faces shared with processor 1 = 0
+    Number of faces shared with processor 1 = 0
+    Number of processor patches = 3
+    Number of processor faces = 190
+    Number of boundary faces = 18963
+
+Processor 1
+    Number of cells = 9184
+    Number of faces shared with processor 0 = 190
+    Number of faces shared with processor 0 = 0
+    Number of faces shared with processor 0 = 0
+    Number of processor patches = 3
+    Number of processor faces = 190
+    Number of boundary faces = 18951
+
+Number of processor faces = 190
+Max number of cells = 9185 (0.00544395% above average 9184.5)
+Max number of processor patches = 3 (0% above average 3)
+Max number of faces between processors = 190 (0% above average 190)
+
+Time = 0s
+
+Decomposing FV fields
+
+    Decomposing volScalarFields
+
+        p
+        nut
+        k
+        omega
+        S
+
+    Decomposing volVectorFields
+
+        U
+
+Decomposing point fields
+
+    Decomposing pointVectorFields
+
+        pointDisplacement
+
+End
+

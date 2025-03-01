@@ -1,0 +1,107 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    front
+    {
+        type            empty;
+    }
+    back
+    {
+        type            empty;
+    }
+    bottom
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 
+0
+;
+    }
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    VAWT
+    {
+        type            nutkWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
+    }
+    AMI
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    AMI_slave
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    nonConformalCyclic_on_AMI
+    {
+        type            nonConformalCyclic;
+    }
+    nonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalCyclic;
+    }
+    nonConformalError_on_AMI
+    {
+        type            nonConformalError;
+    }
+    nonConformalError_on_AMI_slave
+    {
+        type            nonConformalError;
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           uniform 0;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalProcessorCyclic;
+        value           nonuniform List<scalar> 
+0
+;
+    }
+    procBoundary1to0throughnonConformalCyclic_on_AMI
+    {
+        type            nonConformalProcessorCyclic;
+        value           uniform 0;
+    }
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,120 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      binary;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+13
+(
+    inlet
+    {
+        type            patch;
+        nFaces          80;
+        startFace       36310;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          80;
+        startFace       36390;
+    }
+    front
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          18369;
+        startFace       36470;
+    }
+    back
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          18369;
+        startFace       54839;
+    }
+    bottom
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          125;
+        startFace       73208;
+    }
+    top
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          125;
+        startFace       73333;
+    }
+    VAWT
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          258;
+        startFace       73458;
+    }
+    AMI
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          252;
+        startFace       73716;
+    }
+    AMI_slave
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          256;
+        startFace       73968;
+    }
+    nonConformalCyclic_on_AMI
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       74224;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_AMI_slave;
+        transformType   none;
+        originalPatch   AMI;
+    }
+    nonConformalCyclic_on_AMI_slave
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       74224;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_AMI;
+        transformType   none;
+        originalPatch   AMI_slave;
+    }
+    nonConformalError_on_AMI
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       74224;
+        originalPatch   AMI;
+    }
+    nonConformalError_on_AMI_slave
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       74224;
+        originalPatch   AMI_slave;
+    }
+)
+
+// ************************************************************************* //
