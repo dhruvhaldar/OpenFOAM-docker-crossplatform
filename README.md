@@ -1,6 +1,6 @@
 # 🚀 OpenFOAM Docker Image & Testcases
 
-Welcome to the OpenFOAM Docker setup! This repository provides a convenient way to run latest OpenFOAM testcases using Docker. The Docker image is available on [Docker Hub](https://hub.docker.com/repository/docker/haldardhruv/ubuntu_bionic_openfoam2412-dhruv/).
+Welcome to the OpenFOAM Docker setup! This repository provides a convenient way to run latest OpenFOAM testcases using Docker. The Docker image is available on [Docker Hub](https://hub.docker.com/u/haldardhruv).
 
 ## 🛠️ Quick Start
 
@@ -20,6 +20,7 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 
 1. **Image Name**: `haldardhruv/ubuntu_bionic_openfoam2412-dhruv`
 2. **Platform**: Ubuntu Bionic with [OpenFOAM 2412](https://www.openfoam.com/news/main-news/openfoam-v2412)
+3. **Platform**: Ubuntu Noble with [OpenFOAM 12](https://openfoam.org/version/12/)
 
 ## 📚 Additional Information
 
