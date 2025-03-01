@@ -30,4 +30,4 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 
 For more details on how to use this setup, check out the documentation in this repository. If you encounter any issues, feel free to open an issue or contribute to the project! 🤝
 
-[Contact Me](https://dhruvhaldar.vercel.app/)
+[☎️ Contact Me](https://dhruvhaldar.vercel.app/about)
