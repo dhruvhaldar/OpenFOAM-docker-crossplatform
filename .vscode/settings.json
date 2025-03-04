@@ -1,0 +1,45 @@
+{
+    "window.confirmSaveUntitledWorkspace": false,
+    "files.associations": {
+        "*.rmd": "markdown",
+        "*.py": "python",
+        "*Dict": "OpenFOAM",
+        "*Properties": "OpenFOAM",
+        "fvSchemes": "OpenFOAM",
+        "fvSolution": "OpenFOAM",
+        "**/constant/g": "OpenFOAM",
+        "**/0/*": "OpenFOAM"
+    },
+    "jupyter.askForKernelRestart": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.openRepositoryInParentFolders": "always",
+    "explorer.confirmDelete": false,
+    "workbench.productIconTheme": "material-product-icons",
+    "editor.fontFamily": "'Jetbrains Mono NL Medium', 'monospace', monospace",
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "editor.minimap.enabled": false,
+    "git.confirmSync": false,
+    "git.ignoreRebaseWarning": true,
+    "editor.wordWrap": "on",
+    "explorer.confirmDragAndDrop": false,
+    "cmake.showOptionsMovedNotification": false,
+    "python.defaultInterpreterPath": "/home/dhruv/bin/python3",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "cmake.configureOnOpen": true,
+    "workbench.colorTheme": "GitHub Dark High Contrast",
+    "markdown-preview-enhanced.enableHTML5Embed": true,
+    "editor.fontSize": 18,
+    "interactiveWindow.executeWithShiftEnter": true,
+    "window.menuBarVisibility": "compact",
+    "window.titleBarStyle": "custom",
+    "[typst]": {
+        "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+    },
+    "[typst-code]": {
+        "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+    },
+    "githubPullRequests.createOnPublishBranch": "never",
+    "workbench.sideBar.location": "right",
+    "lldb.suppressUpdateNotifications": true
+}
