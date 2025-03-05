@@ -3,12 +3,12 @@
 # Check if the shell is Fish
 if [ "$SHELL" = "/usr/bin/fish" ] || [ "$SHELL" = "/bin/fish" ]; then
     # Execute the Fish command using Fish shell
-    fish -c 'docker run -ti -v (pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12'
+    fish -c 'docker run -ti --user foam -v (pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12'
 # Check if the shell is Zsh
 elif [ "$SHELL" = "/usr/bin/zsh" ] || [ "$SHELL" = "/bin/zsh" ]; then
     # Execute the command using Zsh syntax (same as Bash in this case)
-    docker run -ti -v $(pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12
+    docker run -ti --user foam -v $(pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12
 else
     # Default to Bash syntax
-    docker run -ti -v $(pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12
+    docker run -ti --user foam -v $(pwd):/root/OpenFOAM/12/work haldardhruv/ubuntu_noble_openfoam:v12
 fi
