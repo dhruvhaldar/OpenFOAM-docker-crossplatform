@@ -5,21 +5,21 @@ cd "${0%/*}" || exit                                # Run from this directory
 
 # Alternative decomposeParDict name:
 decompDict="-decomposeParDict system/decomposeParDict.6"
-## Standard decomposeParDict name:
-# unset decompDict
+# ## Standard decomposeParDict name:
+# # unset decompDict
 
-# copy motorbike surface from resources directory
-mkdir -p constant/triSurface
+# # copy motorbike surface from resources directory
+# mkdir -p constant/triSurface
 
-cp -f \
-    "$FOAM_TUTORIALS"/resources/geometry/motorBike.obj.gz \
-    constant/triSurface/
+# cp -f \
+#     "$FOAM_TUTORIALS"/resources/geometry/motorBike.obj.gz \
+#     constant/triSurface/
 
-runApplication surfaceFeatureExtract
+# runApplication surfaceFeatureExtract
 
-runApplication blockMesh
+# runApplication blockMesh
 
-runApplication $decompDict decomposePar
+# runApplication $decompDict decomposePar
 
 # # Using distributedTriSurfaceMesh?
 # if foamDictionary -entry geometry -value system/snappyHexMeshDict | \
@@ -41,7 +41,7 @@ runApplication $decompDict decomposePar
 
 # runParallel $decompDict patchSummary
 
-# runParallel $decompDict potentialFoam -writephi
+runParallel $decompDict potentialFoam -writephi
 
 # runParallel $decompDict checkMesh -writeFields '(nonOrthoAngle)' -constant
 
