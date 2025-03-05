@@ -28,7 +28,7 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    motosrBike.obj
+    motorBike.obj
     {
         type triSurfaceMesh;
         name motorBike;
