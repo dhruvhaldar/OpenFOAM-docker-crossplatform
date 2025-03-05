@@ -9,6 +9,7 @@ RUN apt-get update \
         sudo \
         neofetch \
         wget \
+        rsync \
         curl \
         software-properties-common \
     && rm -rf /var/lib/apt/lists/*
