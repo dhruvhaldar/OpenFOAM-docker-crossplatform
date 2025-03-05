@@ -28,7 +28,8 @@ RUN curl -s https://dl.openfoam.com/add-debian-repo.sh | bash \
 # Add custom aliases to the foam user's .bashrc
 RUN echo "alias e='exit'" >> /home/foam/.bashrc \
     && echo "alias l='ls -lah'" >> /home/foam/.bashrc \
-    && echo "alias c='clear'" >> /home/foam/.bashrc
+    && echo "alias c='clear'" >> /home/foam/.bashrc \
+    && echo "cd /foam/OpenFOAM/2412/work/OpenFOAM_v2412_cases" >> /home/foam/.bashrc
 
 # Set the default container user to foam
 USER foam

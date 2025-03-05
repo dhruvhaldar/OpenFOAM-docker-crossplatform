@@ -29,7 +29,8 @@ RUN sh -c "wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/op
 # Add custom aliases to the foam user's .bashrc
 RUN echo "alias e='exit'" >> /home/foam/.bashrc \
     && echo "alias l='ls -lah'" >> /home/foam/.bashrc \
-    && echo "alias c='clear'" >> /home/foam/.bashrc
+    && echo "alias c='clear'" >> /home/foam/.bashrc \
+    && echo "cd /foam/OpenFOAM/12/work/OpenFOAM_v12_cases" >> /home/foam/.bashrc
 
 # Set the default container user to foam
 USER foam

@@ -5,10 +5,10 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 ## 🛠️ Quick Start
 
 1. **Download and Run the Docker Image**  
-   Use the `run_openfoam.sh` script to effortlessly download and run the Docker image. This script handles everything for you! 🎉
+   Use the `run_openfoam_vXX.sh` script to effortlessly download and run the Docker image. This script handles everything for you! 🎉
 
 2. **Volume Mounting**  
-   The `run_openfoam.sh` script also mounts this Git repository as a Docker volume inside the image, ensuring you have access to all necessary files and configurations. 📂
+   The `run_openfoam_vXX.sh` script also mounts this Git repository as a Docker volume inside the image, ensuring you have access to all necessary files and configurations. 📂
 
 3. **Output Visualization**
    Works best with native version of [Paraview](https://www.paraview.org/download/). Remember ⚡ to make an empty file `open.foam` inside your testcase, which can then be opened in Paraview.
@@ -19,11 +19,11 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 ## 📦 Docker Images
 
 📦 OpenFOAMv2412 (By OpenCFD)
-1. **Image Name**: `haldardhruv/ubuntu_bionic_openfoam2412-dhruv`
-2. **Platform**: [Ubuntu Bionic](https://ubuntu.com/18-04) with [OpenFOAM 2412](https://www.openfoam.com/news/main-news/openfoam-v2412)
+1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam2412-dhruv`
+2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 2412](https://www.openfoam.com/news/main-news/openfoam-v2412)
 
 📦 OpenFOAMv12 (Community Edition)
-1. **Image Name**: `haldardhruv/ubuntu_bionic_openfoam2412-dhruv`
+1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam2412-dhruv`
 2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 12](https://openfoam.org/version/12/)
 
 ## 📚 Additional Information
