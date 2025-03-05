@@ -1,1 +1,0 @@
-surfaceFeatureConvert constant/triSurface/file.eMesh features.obj

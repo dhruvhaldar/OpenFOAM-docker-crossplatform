@@ -27,7 +27,7 @@
     "python.defaultInterpreterPath": "/home/dhruv/bin/python3",
     "jupyter.interactiveWindow.creationMode": "perFile",
     "cmake.configureOnOpen": true,
-    "workbench.colorTheme": "GitHub Dark High Contrast",
+    "workbench.colorTheme": "GitHub Light Colorblind (Beta)",
     "markdown-preview-enhanced.enableHTML5Embed": true,
     "editor.fontSize": 18,
     "interactiveWindow.executeWithShiftEnter": true,
