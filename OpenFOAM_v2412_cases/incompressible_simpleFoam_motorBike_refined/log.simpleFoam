@@ -1,0 +1,651 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            mintu
+  Device name:           irdma0
+  Device vendor ID:      0x8086
+  Device vendor part ID: 14289
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           mintu
+  Local device:         irdma3
+  Local port:           1
+  CPCs attempted:       udcm
+--------------------------------------------------------------------------
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2212                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _70874860-20230612 OPENFOAM=2212 patch=230612 version=2212
+Arch   : "LSB;label=32;scalar=64"
+Exec   : simpleFoam -parallel -decomposeParDict system/decomposeParDict.6
+Date   : Mar 06 2025
+Time   : 16:54:37
+Host   : mintu
+PID    : 563002
+I/O    : uncollated
+Case   : /scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined
+nProcs : 6
+Hosts  :
+(
+    (mintu 6)
+)
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From virtual void Foam::Time::readDict()
+    in file db/Time/TimeIO.C at line 408
+    Reading "system/controlDict" at line 24 to 54
+    Disabled binary format compression (inefficient/ineffective)
+Create mesh for time = 0
+[mintu:562997] 23 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[mintu:562997] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[mintu:562997] 5 more processes have sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 500 steps.
+
+Reading field p
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type RAS
+Selecting RAS turbulence model kOmegaSST
+Selecting patchDistMethod meshWave
+RAS
+{
+    RASModel        kOmegaSST;
+    turbulence      on;
+    printCoeffs     on;
+    alphaK1         0.85;
+    alphaK2         1;
+    alphaOmega1     0.5;
+    alphaOmega2     0.856;
+    gamma1          0.555556;
+    gamma2          0.44;
+    beta1           0.075;
+    beta2           0.0828;
+    betaStar        0.09;
+    a1              0.31;
+    b1              1;
+    c1              10;
+    F3              false;
+    decayControl    false;
+    kInf            0;
+    omegaInf        0;
+}
+
+No MRF models present
+
+No finite volume options present
+
+Starting time loop
+
+streamLine streamLines:
+    Employing velocity field U
+    automatic track length specified through number of sub cycles : 5
+
+nearWallFields near: Sampling 1 fields
+wallBoundedStreamLine wallBoundedStreamLines:
+    Employing velocity field UNear
+Sampled surface:
+    yNormal -> vtk
+        sampledCuttingPlane: yNormal : plane:(0 1 0) (0 0 0) offsets:(0)
+
+forceCoeffs forceCoeffs1:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1
+    Not including porosity effects
+    magUInf: 20
+    lRef   : 1.42
+    Aref   : 0.75
+    rhoInf : 1
+    Selecting all coefficients
+    - Drag force: Cd
+    - Drag force front: Cd(f)
+    - Drag force rear: Cd(r)
+    - Lift force: Cl
+    - Lift force front: Cl(f)
+    - Lift force rear: Cl(r)
+    - Pitch moment: CmPitch
+    - Roll moment: CmRoll
+    - Yaw moment: CmYaw
+    - Side force: Cs
+    - Side force front: Cs(f)
+    - Side force rear: Cs(r)
+
+
+--> FOAM Warning : 
+Unknown function type graphFunctionObject
+
+Valid function types :
+
+113
+(
+AMIWeights
+BilgerMixtureFraction
+CourantNo
+Curle
+DESModelRegions
+DMD
+LambVector
+Lambda2
+MachNo
+ObukhovLength
+PecletNo
+Q
+XiReactionRate
+abort
+add
+age
+areaWrite
+binField
+blendingFactor
+coded
+columnAverage
+comfort
+components
+continuityError
+ddt
+ddt2
+derivedFields
+div
+ensightWrite
+enstrophy
+exprField
+externalCoupled
+extractEulerianParticles
+fieldAverage
+fieldCoordinateSystemTransform
+fieldExtents
+fieldMinMax
+flowType
+flux
+fluxSummary
+forceCoeffs
+forces
+grad
+heatTransferCoeff
+histogram
+interfaceHeight
+limitFields
+log
+mag
+magSqr
+mapFields
+momentum
+momentumError
+multiFieldValue
+multiRegion
+multiphaseInterHtcModel
+multiply
+nearWallFields
+norm
+parProfiling
+particleDistribution
+patchProbes
+pow
+pressure
+probes
+processorField
+propellerInfo
+proudmanAcousticPower
+psiReactionThermoMoleFractions
+psiReactionsSensitivityAnalysis
+psiSpecieReactionRates
+randomise
+reactingEulerHtcModel
+readFields
+reference
+regionSizeDistribution
+removeRegisteredObject
+resolutionIndex
+rhoReactionThermoMoleFractions
+rhoReactionsSensitivityAnalysis
+rhoSpecieReactionRates
+runTimeControl
+setFlow
+setTimeStep
+sets
+solverInfo
+stabilityBlendingFactor
+streamFunction
+streamLine
+subtract
+surfaceDistance
+surfaceFieldValue
+surfaceInterpolate
+surfaces
+syncObjects
+systemCall
+thermoCoupleProbes
+timeActivatedFileUpdate
+timeInfo
+turbulenceFields
+valueAverage
+volFieldValue
+vorticity
+vtkWrite
+wallBoundedStreamLine
+wallHeatFlux
+wallShearStress
+writeCellCentres
+writeCellVolumes
+writeDictionary
+writeObjects
+yPlus
+zeroGradient
+)
+
+
+
+    From static Foam::autoPtr<Foam::functionObject> Foam::functionObject::New(const Foam::word&, const Foam::Time&, const Foam::dictionary&)
+    in file db/functionObjects/functionObject/functionObject.C at line 129.
+--> loading function object 'residualGraph1'
+
+--> FOAM Warning : 
+Unknown function type graphFunctionObject
+
+Valid function types :
+
+113
+(
+AMIWeights
+BilgerMixtureFraction
+CourantNo
+Curle
+DESModelRegions
+DMD
+LambVector
+Lambda2
+MachNo
+ObukhovLength
+PecletNo
+Q
+XiReactionRate
+abort
+add
+age
+areaWrite
+binField
+blendingFactor
+coded
+columnAverage
+comfort
+components
+continuityError
+ddt
+ddt2
+derivedFields
+div
+ensightWrite
+enstrophy
+exprField
+externalCoupled
+extractEulerianParticles
+fieldAverage
+fieldCoordinateSystemTransform
+fieldExtents
+fieldMinMax
+flowType
+flux
+fluxSummary
+forceCoeffs
+forces
+grad
+heatTransferCoeff
+histogram
+interfaceHeight
+limitFields
+log
+mag
+magSqr
+mapFields
+momentum
+momentumError
+multiFieldValue
+multiRegion
+multiphaseInterHtcModel
+multiply
+nearWallFields
+norm
+parProfiling
+particleDistribution
+patchProbes
+pow
+pressure
+probes
+processorField
+propellerInfo
+proudmanAcousticPower
+psiReactionThermoMoleFractions
+psiReactionsSensitivityAnalysis
+psiSpecieReactionRates
+randomise
+reactingEulerHtcModel
+readFields
+reference
+regionSizeDistribution
+removeRegisteredObject
+resolutionIndex
+rhoReactionThermoMoleFractions
+rhoReactionsSensitivityAnalysis
+rhoSpecieReactionRates
+runTimeControl
+setFlow
+setTimeStep
+sets
+solverInfo
+stabilityBlendingFactor
+streamFunction
+streamLine
+subtract
+surfaceDistance
+surfaceFieldValue
+surfaceInterpolate
+surfaces
+syncObjects
+systemCall
+thermoCoupleProbes
+timeActivatedFileUpdate
+timeInfo
+turbulenceFields
+valueAverage
+volFieldValue
+vorticity
+vtkWrite
+wallBoundedStreamLine
+wallHeatFlux
+wallShearStress
+writeCellCentres
+writeCellVolumes
+writeDictionary
+writeObjects
+yPlus
+zeroGradient
+)
+
+
+
+    From static Foam::autoPtr<Foam::functionObject> Foam::functionObject::New(const Foam::word&, const Foam::Time&, const Foam::dictionary&)
+    in file db/functionObjects/functionObject/functionObject.C at line 129.
+--> loading function object 'forceCoeffsGraph1'
+
+--> FOAM Warning : 
+Unknown function type foamReport
+
+Valid function types :
+
+113
+(
+AMIWeights
+BilgerMixtureFraction
+CourantNo
+Curle
+DESModelRegions
+DMD
+LambVector
+Lambda2
+MachNo
+ObukhovLength
+PecletNo
+Q
+XiReactionRate
+abort
+add
+age
+areaWrite
+binField
+blendingFactor
+coded
+columnAverage
+comfort
+components
+continuityError
+ddt
+ddt2
+derivedFields
+div
+ensightWrite
+enstrophy
+exprField
+externalCoupled
+extractEulerianParticles
+fieldAverage
+fieldCoordinateSystemTransform
+fieldExtents
+fieldMinMax
+flowType
+flux
+fluxSummary
+forceCoeffs
+forces
+grad
+heatTransferCoeff
+histogram
+interfaceHeight
+limitFields
+log
+mag
+magSqr
+mapFields
+momentum
+momentumError
+multiFieldValue
+multiRegion
+multiphaseInterHtcModel
+multiply
+nearWallFields
+norm
+parProfiling
+particleDistribution
+patchProbes
+pow
+pressure
+probes
+processorField
+propellerInfo
+proudmanAcousticPower
+psiReactionThermoMoleFractions
+psiReactionsSensitivityAnalysis
+psiSpecieReactionRates
+randomise
+reactingEulerHtcModel
+readFields
+reference
+regionSizeDistribution
+removeRegisteredObject
+resolutionIndex
+rhoReactionThermoMoleFractions
+rhoReactionsSensitivityAnalysis
+rhoSpecieReactionRates
+runTimeControl
+setFlow
+setTimeStep
+sets
+solverInfo
+stabilityBlendingFactor
+streamFunction
+streamLine
+subtract
+surfaceDistance
+surfaceFieldValue
+surfaceInterpolate
+surfaces
+syncObjects
+systemCall
+thermoCoupleProbes
+timeActivatedFileUpdate
+timeInfo
+turbulenceFields
+valueAverage
+volFieldValue
+vorticity
+vtkWrite
+wallBoundedStreamLine
+wallHeatFlux
+wallShearStress
+writeCellCentres
+writeCellVolumes
+writeDictionary
+writeObjects
+yPlus
+zeroGradient
+)
+
+
+
+    From static Foam::autoPtr<Foam::functionObject> Foam::functionObject::New(const Foam::word&, const Foam::Time&, const Foam::dictionary&)
+    in file db/functionObjects/functionObject/functionObject.C at line 129.
+--> loading function object 'foamReport1'
+
+Time = 1
+
+smoothSolver:  Solving for Ux, Initial residual = 0.0817994, Final residual = 0.00685052, No Iterations 8
+smoothSolver:  Solving for Uy, Initial residual = 0.47156, Final residual = 0.0391407, No Iterations 8
+smoothSolver:  Solving for Uz, Initial residual = 0.410443, Final residual = 0.0347699, No Iterations 7
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.00684595, No Iterations 6
+time step continuity errors : sum local = 0.000753022, global = -5.33991e-05, cumulative = -5.33991e-05
+smoothSolver:  Solving for omega, Initial residual = 0.00278455, Final residual = 0.000170038, No Iterations 2
+bounding omega, min: -1.45357e+06 max: 6.08631e+08 average: 39454.3
+smoothSolver:  Solving for k, Initial residual = 1, Final residual = 0.0824803, No Iterations 3
+ExecutionTime = 46.75 s  ClockTime = 59 s
+
+forceCoeffs forceCoeffs1 write:
+    Coefficient	Total	Pressure	Viscous	Internal
+    Cd:	1.75438	1.68674	0.0676383	0
+    Cd(f):	0.877426	0.843535	0.0338915	0
+    Cd(r):	0.876956	0.843209	0.0337467	0
+    Cl:	-0.0528643	-0.0536733	0.000808991	0
+    Cl(f):	0.65977	0.635738	0.0240319	0
+    Cl(r):	-0.712634	-0.689411	-0.023223	0
+    CmPitch:	0.686202	0.662575	0.0236274	0
+    CmRoll:	0.000235336	0.000162935	7.2402e-05	0
+    CmYaw:	-0.0080495	-0.00792754	-0.000121968	0
+    Cs:	-0.00626903	-0.00601992	-0.000249112	0
+    Cs(f):	-0.011184	-0.0109375	-0.000246524	0
+    Cs(r):	0.00491499	0.00491758	-2.58757e-06	0
+
+    writing force and moment coefficient files.
+
+Time = 2
+
+smoothSolver:  Solving for Ux, Initial residual = 0.459516, Final residual = 0.0335571, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.436021, Final residual = 0.0381558, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.45103, Final residual = 0.029256, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0149469, Final residual = 0.00013966, No Iterations 4
+time step continuity errors : sum local = 0.000711957, global = -5.73088e-05, cumulative = -0.000110708
+smoothSolver:  Solving for omega, Initial residual = 0.043093, Final residual = 0.00388136, No Iterations 3
+bounding omega, min: -10280.2 max: 3.35225e+19 average: 4.76895e+13
+smoothSolver:  Solving for k, Initial residual = 0.0649074, Final residual = 0.00280961, No Iterations 1
+ExecutionTime = 64.71 s  ClockTime = 77 s
+
+forceCoeffs forceCoeffs1 write:
+    Coefficient	Total	Pressure	Viscous	Internal
+    Cd:	1.64061	1.57867	0.0619386	0
+    Cd(f):	0.820684	0.789614	0.0310692	0
+    Cd(r):	0.819926	0.789057	0.0308694	0
+    Cl:	-0.0447456	-0.0451672	0.000421566	0
+    Cl(f):	0.617884	0.59579	0.0220945	0
+    Cl(r):	-0.66263	-0.640957	-0.021673	0
+    CmPitch:	0.640257	0.618373	0.0218837	0
+    CmRoll:	0.000378648	0.000278771	9.98771e-05	0
+    CmYaw:	-0.0082831	-0.0081536	-0.000129508	0
+    Cs:	-0.00630842	-0.00602261	-0.000285816	0
+    Cs(f):	-0.0114373	-0.0111649	-0.000272416	0
+    Cs(r):	0.00512889	0.00514229	-1.34001e-05	0
+
+    writing force and moment coefficient files.
+
+Time = 3
+
+smoothSolver:  Solving for Ux, Initial residual = 0.999974, Final residual = 0.0763853, No Iterations 7
+smoothSolver:  Solving for Uy, Initial residual = 0.999998, Final residual = 0.0896064, No Iterations 8
+smoothSolver:  Solving for Uz, Initial residual = 0.999998, Final residual = 0.0985632, No Iterations 8
+GAMG:  Solving for p, Initial residual = 0.08662, Final residual = 0.000747816, No Iterations 4
+time step continuity errors : sum local = 8589.34, global = -11.493, cumulative = -11.4931
+smoothSolver:  Solving for omega, Initial residual = 0.538472, Final residual = 4.98403e-07, No Iterations 1
+bounding omega, min: -8.33911e+11 max: 1.00568e+19 average: 1.45725e+13
+smoothSolver:  Solving for k, Initial residual = 0.0865792, Final residual = 0.000198942, No Iterations 1
+ExecutionTime = 85.44 s  ClockTime = 98 s
+
+forceCoeffs forceCoeffs1 write:
+    Coefficient	Total	Pressure	Viscous	Internal
+    Cd:	83924.3	77080.4	6843.82	0
+    Cd(f):	13723.1	12711.4	1011.66	0
+    Cd(r):	70201.2	64369.1	5832.15	0
+    Cl:	39936.8	45163.9	-5227.08	0
+    Cl(f):	34847.9	34868.8	-20.8754	0
+    Cl(r):	5088.93	10295.1	-5206.2	0
+    CmPitch:	14879.5	12286.8	2592.66	0
+    CmRoll:	-28239.1	-25828.8	-2410.24	0
+    CmYaw:	-51031.4	-48562.4	-2469.01	0
+    Cs:	81771.6	79125.9	2645.68	0
+    Cs(f):	-10145.6	-8999.42	-1146.17	0
+    Cs(r):	91917.1	88125.3	3791.85	0
+
+    writing force and moment coefficient files.
+
+Time = 4
+
+smoothSolver:  Solving for Ux, Initial residual = 0.710424, Final residual = 0.0690362, No Iterations 27
+smoothSolver:  Solving for Uy, Initial residual = 0.694852, Final residual = 0.0663234, No Iterations 31
+smoothSolver:  Solving for Uz, Initial residual = 0.695896, Final residual = 0.0609924, No Iterations 25
+GAMG:  Solving for p, Initial residual = 0.999997, Final residual = 1.00057, No Iterations 1000
+time step continuity errors : sum local = 3.72597e+09, global = 3.62511e+09, cumulative = 3.62511e+09
+smoothSolver:  Solving for omega, Initial residual = 0.533035, Final residual = 1.33763e-05, No Iterations 1
+bounding omega, min: -2.51357e+06 max: 3.12097e+19 average: 8.61125e+12
+smoothSolver:  Solving for k, Initial residual = 0.32046, Final residual = 0.01412, No Iterations 2
+ExecutionTime = 722 s  ClockTime = 747 s
+
+forceCoeffs forceCoeffs1 write:
+    Coefficient	Total	Pressure	Viscous	Internal
+    Cd:	-1.06798e+17	-1.06798e+17	-2.60696e+09	0
+    Cd(f):	-2.15096e+18	-2.15096e+18	-1.65679e+09	0
+    Cd(r):	2.04416e+18	2.04416e+18	-9.50171e+08	0
+    Cl:	-2.08084e+18	-2.08084e+18	-1.79123e+09	0
+    Cl(f):	-1.84533e+18	-1.84533e+18	-3.00685e+09	0
+    Cl(r):	-2.35509e+17	-2.35509e+17	1.21562e+09	0
+    CmPitch:	-8.0491e+17	-8.0491e+17	-2.11124e+09	0
+    CmRoll:	-2.09756e+18	-2.09756e+18	-3.53311e+08	0
+    CmYaw:	-1.17816e+18	-1.17816e+18	4.65397e+08	0
+    Cs:	3.24121e+18	3.24121e+18	5.47377e+07	0
+    Cs(f):	4.42449e+17	4.42449e+17	4.92766e+08	0
+    Cs(r):	2.79876e+18	2.79876e+18	-4.38028e+08	0
+
+    writing force and moment coefficient files.
+
+Time = 5
+
+smoothSolver:  Solving for Ux, Initial residual = 0.73747, Final residual = 0.0698932, No Iterations 6
+smoothSolver:  Solving for Uy, Initial residual = 0.630936, Final residual = 0.0527211, No Iterations 7
+smoothSolver:  Solving for Uz, Initial residual = 0.684257, Final residual = 0.0589428, No Iterations 118

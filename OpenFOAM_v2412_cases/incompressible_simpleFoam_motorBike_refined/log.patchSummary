@@ -1,0 +1,125 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            mintu
+  Device name:           irdma0
+  Device vendor ID:      0x8086
+  Device vendor part ID: 14289
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           mintu
+  Local device:         irdma3
+  Local port:           1
+  CPCs attempted:       udcm
+--------------------------------------------------------------------------
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2212                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _70874860-20230612 OPENFOAM=2212 patch=230612 version=2212
+Arch   : "LSB;label=32;scalar=64"
+Exec   : patchSummary -parallel -decomposeParDict system/decomposeParDict.6
+Date   : Mar 06 2025
+Time   : 16:52:50
+Host   : mintu
+PID    : 562781
+I/O    : uncollated
+Case   : /scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined
+nProcs : 6
+Hosts  :
+(
+    (mintu 6)
+)
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From virtual void Foam::Time::readDict()
+    in file db/Time/TimeIO.C at line 408
+    Reading "system/controlDict" at line 24 to 54
+    Disabled binary format compression (inefficient/ineffective)
+Create mesh for time = 0
+
+Time = 0
+
+Valid fields:
+    volVectorField	U
+    volScalarField	k
+    volScalarField	nut
+    volScalarField	omega
+    volScalarField	p
+
+patch	: frontAndBack
+patch	: upperWall
+    scalar		k		slip
+    scalar		nut		calculated
+    scalar		omega		slip
+    scalar		p		slip
+    vector		U		slip
+
+patch	: inlet
+    scalar		k		fixedValue
+    scalar		nut		calculated
+    scalar		omega		fixedValue
+    scalar		p		zeroGradient
+    vector		U		fixedValue
+
+patch	: outlet
+    scalar		k		inletOutlet
+    scalar		nut		calculated
+    scalar		omega		inletOutlet
+    scalar		p		fixedValue
+    vector		U		inletOutlet
+
+wall	: lowerWall
+    scalar		k		generic
+    scalar		nut		generic
+    scalar		omega		generic
+    scalar		p		zeroGradient
+    vector		U		fixedValue
+
+group	: motorBikeGroup
+    scalar		k		generic
+    scalar		nut		generic
+    scalar		omega		generic
+    scalar		p		zeroGradient
+    vector		U		noSlip
+
+group	: processor
+    scalar		k		processor
+    scalar		nut		processor
+    scalar		omega		processor
+    scalar		p		processor
+    vector		U		processor
+
+End
+
+Finalising parallel run
+[mintu:562777] 23 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[mintu:562777] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[mintu:562777] 5 more processes have sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port

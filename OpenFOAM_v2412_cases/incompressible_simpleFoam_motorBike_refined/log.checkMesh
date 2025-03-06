@@ -1,0 +1,232 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            mintu
+  Device name:           irdma0
+  Device vendor ID:      0x8086
+  Device vendor part ID: 14289
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           mintu
+  Local device:         irdma3
+  Local port:           1
+  CPCs attempted:       udcm
+--------------------------------------------------------------------------
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2212                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _70874860-20230612 OPENFOAM=2212 patch=230612 version=2212
+Arch   : "LSB;label=32;scalar=64"
+Exec   : checkMesh -parallel -decomposeParDict system/decomposeParDict.6 -writeFields (nonOrthoAngle) -constant
+Date   : Mar 06 2025
+Time   : 16:53:51
+Host   : mintu
+PID    : 562924
+I/O    : uncollated
+Case   : /scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined
+nProcs : 6
+Hosts  :
+(
+    (mintu 6)
+)
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From virtual void Foam::Time::readDict()
+    in file db/Time/TimeIO.C at line 408
+    Reading "system/controlDict" at line 24 to 54
+    Disabled binary format compression (inefficient/ineffective)
+Create mesh for time = constant
+[mintu:562918] 23 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[mintu:562918] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[mintu:562918] 5 more processes have sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+
+Writing mesh quality as fields 1(nonOrthoAngle)
+
+Time = constant
+
+Mesh stats 
+    points:           18125613
+    faces:            45230682
+    internal faces:   42345057
+    cells:            13818496
+    faces per cell:   6.33757
+    boundary patches: 72 (74 77)
+    point zones:      1
+    face zones:       0
+    cell zones:       1
+
+Overall number of cells of each type:
+    hexahedra:     10095329
+    prisms:        491648
+    wedges:        64757
+    pyramids:      76
+    tet wedges:    92378
+    tetrahedra:    5780
+    polyhedra:     3068528
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            4   251091
+            5   348830
+            6   750000
+            7   376826
+            8   150595
+            9   719509
+           10   16163
+           11   7354
+           12   265038
+           13   3511
+           14   3793
+           15   162684
+           16   341
+           17   471
+           18   12287
+           19   5
+           20   5
+           21   25
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces...
+                   Patch    Faces   PointsSurface topology
+            frontAndBack      360      460  ok (non-closed singly connected)
+                   inlet       72      100  ok (non-closed singly connected)
+                  outlet       72      100  ok (non-closed singly connected)
+               lowerWall     2680     3175  ok (non-closed singly connected)
+               upperWall      160      230  ok (non-closed singly connected)
+    motorBike_frt-fairing:001%1   241924   466484  ok (non-closed singly connected)
+    motorBike_windshield:002%2     2944     4791  ok (non-closed singly connected)
+    motorBike_rr-wh-rim:005%5    13850    21632  ok (non-closed singly connected)
+    motorBike_rr-wh-rim:010%10    52893    70555  ok (non-closed singly connected)
+    motorBike_fr-wh-rim:011%11    79295    99891  ok (non-closed singly connected)
+    motorBike_fr-wh-brake-disk:012%12     5748     6730  ok (non-closed singly connected)
+    motorBike_frame:016-shadow%13    10361    18055  ok (non-closed singly connected)
+    motorBike_rear-susp:014%14    75610   134018  ok (non-closed singly connected)
+    motorBike_rear-susp:014-shadow%15    40568   108568  ok (non-closed singly connected)
+    motorBike_frame:016%16     5254    14281  ok (non-closed singly connected)
+    motorBike_rr-wh-rim:005-shadow%17     5568    15547  ok (non-closed singly connected)
+    motorBike_rr-wh-chain-hub:022%22    17275    19877  ok (non-closed singly connected)
+    motorBike_rearseat%24    28572    34125  ok (non-closed singly connected)
+    motorBike_frt-fairing%25    40323    54913  ok (non-closed singly connected)
+    motorBike_windshield%26    13299    29496  ok (non-closed singly connected)
+    motorBike_headlights%27     8217    12433  ok (non-closed singly connected)
+    motorBike_driversseat%28    30056    40640  ok (non-closed singly connected)
+    motorBike_rear-body%29   108280   138322  ok (non-closed singly connected)
+    motorBike_fuel-tank%30    15015    21199  ok (non-closed singly connected)
+    motorBike_exhaust%31   126685   158367  ok (non-closed singly connected)
+    motorBike_rr-wh-rim%32    72123    92760  ok (non-closed singly connected)
+    motorBike_fr-mud-guard%33    46335    90188  ok (non-closed singly connected)
+    motorBike_fr-wh-rim%34    44548    61107  ok (non-closed singly connected)
+    motorBike_fr-wh-brake-disk%35    61367    93930  ok (non-closed singly connected)
+    motorBike_fr-brake-caliper%36    24183    28957  ok (non-closed singly connected)
+    motorBike_fr-wh-tyre%37    67013    82428  ok (non-closed singly connected)
+      motorBike_hbars%38    80266   103206  ok (non-closed singly connected)
+    motorBike_fr-forks%39    73650    92354  ok (non-closed singly connected)
+      motorBike_chain%40    73652    81362  ok (non-closed singly connected)
+    motorBike_rr-wh-tyre%41    63227    80694  ok (non-closed singly connected)
+    motorBike_square-dial%42      700      853  ok (non-closed singly connected)
+    motorBike_round-dial%43     1182     1461  ok (non-closed singly connected)
+    motorBike_dial-holder%44    10177    12644  ok (non-closed singly connected)
+    motorBike_rear-susp%45   183365   211252  ok (non-closed singly connected)
+    motorBike_rear-brake-lights%46     7259     9147  ok (non-closed singly connected)
+    motorBike_rear-light-bracket%47    12587    14856  ok (non-closed singly connected)
+      motorBike_frame%48   143873   176087  ok (non-closed singly connected)
+    motorBike_rear-mud-guard%49    27027    52270  ok (non-closed singly connected)
+    motorBike_rear-susp-spring-damp%50     9656    18686  ok (non-closed singly connected)
+    motorBike_fairing-inner-plate%51    31638    38968  ok (non-closed singly connected)
+    motorBike_clutch-housing%52    32842    39067  ok (non-closed singly connected)
+    motorBike_radiator%53    29165    49755  ok (non-closed singly connected)
+    motorBike_water-pipe%54    17692    21693  ok (non-closed singly connected)
+    motorBike_water-pump%55    10685    13425  ok (non-closed singly connected)
+     motorBike_engine%56   123940   142348  ok (non-closed singly connected)
+    motorBike_rear-shock-link%57     7210    12955  ok (non-closed singly connected)
+    motorBike_rear-brake-fluid-pot-bracket%58     6070    10082  ok (non-closed singly connected)
+    motorBike_rear-brake-fluid-pot%59     7771     8668  ok (non-closed singly connected)
+    motorBike_footpeg%60    14770    16960  ok (non-closed singly connected)
+    motorBike_rr-wh-chain-hub%61    16728    27785  ok (non-closed singly connected)
+    motorBike_rear-brake-caliper%62    23282    25321  ok (non-closed singly connected)
+    motorBike_rider-helmet%65    20274    26323  ok (non-closed singly connected)
+    motorBike_rider-visor%66     7368    10678  ok (non-closed singly connected)
+    motorBike_rider-boots%67    27018    35935  ok (non-closed singly connected)
+    motorBike_rider-gloves%68    33683    45013  ok (non-closed singly connected)
+    motorBike_rider-body%69    68149    92789  ok (non-closed singly connected)
+    motorBike_frame:0%70     3963     5347  ok (non-closed singly connected)
+    motorBike_frt-fairing:001-shadow%74   147073   394903  ok (non-closed singly connected)
+    motorBike_windshield-shadow%75     9233    25492  ok (non-closed singly connected)
+    motorBike_fr-mud-guard-shadow%81    29658    77759  ok (non-closed singly connected)
+    motorBike_fr-wh-brake-disk-shadow%83    26655    70181  ok (non-closed singly connected)
+    motorBike_rear-mud-guard-shadow%84    16382    44024  ok (non-closed singly connected)
+    motorBike_rear-susp-spring-damp-shadow%85     6308    16128  ok (non-closed singly connected)
+    motorBike_radiator-shadow%86    15731    41093  ok (non-closed singly connected)
+    motorBike_rear-shock-link-shadow%87     4413    10938  ok (non-closed singly connected)
+    motorBike_rear-brake-fluid-pot-bracket-shadow%88     3038     7980  ok (non-closed singly connected)
+    motorBike_rr-wh-chain-hub-shadow%89     7723    21233  ok (non-closed singly connected)
+
+Checking faceZone topology for multiply connected surfaces...
+    No faceZones found.
+
+Checking basic cellZone addressing...
+                CellZone        Cells       Points       VolumeBoundingBox
+                  inner     13812512     18117318      13.4707 (-1.00887 -1.00081 0) (5.99999 0.504697 2.14735)
+
+Checking basic pointZone addressing...
+               PointZone  PointsBoundingBox
+            frozenPoints       0(1e+150 1e+150 1e+150) (-1e+150 -1e+150 -1e+150)
+
+Checking geometry...
+    Overall domain bounding box (-5 -4 0) (15 4 8)
+    Mesh has 3 geometric (non-empty/wedge) directions (1 1 1)
+    Mesh has 3 solution (non-empty) directions (1 1 1)
+    Boundary openness (-5.92216e-16 3.15236e-16 6.71928e-17) OK.
+    Max cell openness = 1.16668e-15 OK.
+    Max aspect ratio = 54.6966 OK.
+    Minimum face area = 1.13714e-09. Maximum face area = 1.0217.  Face area magnitudes OK.
+    Min volume = 2.1437e-12. Max volume = 1.01106.  Total volume = 1279.68.  Cell volumes OK.
+    Mesh non-orthogonality Max: 64.9996 average: 13.4558
+    Non-orthogonality check OK.
+    Face pyramids OK.
+ ***Max skewness = 11.8568, 138 highly skew faces detected which may impair the quality of the results
+  <<Writing 138 skew faces to set skewFaces
+    Coupled point location match (average 0) OK.
+
+Failed 1 mesh checks.
+
+Writing fields with mesh quality parameters
+    Writing non-orthogonality (angle) to nonOrthoAngle
+
+End
+
+Finalising parallel run

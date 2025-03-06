@@ -1,0 +1,91 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2212                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _70874860-20230612 OPENFOAM=2212 patch=230612 version=2212
+Arch   : "LSB;label=32;scalar=64"
+Exec   : surfaceFeatureExtract
+Date   : Mar 06 2025
+Time   : 15:00:16
+Host   : mintu
+PID    : 555071
+I/O    : uncollated
+Case   : /scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From virtual void Foam::Time::readDict()
+    in file db/Time/TimeIO.C at line 408
+    Reading "system/controlDict" at line 24 to 54
+    Disabled binary format compression (inefficient/ineffective)
+
+Note: Feature line extraction only valid on closed manifold surfaces
+
+Reading surfaceFeatureExtractDict
+
+Surfaces     : motorBike.obj
+Output       : motorBike
+Load options : offset
+Write options: writeObj=yes writeVTK=off
+
+Statistics:
+Triangles    : 331653 in 67 region(s)
+Vertices     : 132871
+Bounding Box : (-0.291665 -0.350289 -4.232e-05) (1.75115 0.332267 1.35152)
+
+Constructing feature set from included angle 150
+Selecting edges based purely on geometric tests: no
+Removing all non-manifold edges (edges with > 2 connected faces) unless they cross multiple regions
+
+Initial Feature set:
+    points : 2292
+    edges  : 20867
+    of which
+        region edges   : 8678
+        external edges : 2966
+        internal edges : 9223
+
+Final Feature set:
+    points : 20665
+    of which
+        convex             : 586
+        concave            : 509
+        mixed              : 1197
+        non-feature        : 18373
+    edges  : 20867
+    of which
+        external edges     : 7172
+        internal edges     : 10914
+        flat edges         : 95
+        open edges         : 49
+        multiply connected : 2637
+
+Writing extendedFeatureEdgeMesh to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike.extendedFeatureEdgeMesh"
+
+Writing extendedEdgeMesh components to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike"
+Writing 586 convex feature points to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_convexFeaturePts.obj"
+Writing 509 concave feature points to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_concaveFeaturePts.obj"
+Writing 1197 mixed feature points to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_mixedFeaturePts.obj"
+Writing 1197 mixed feature point structure to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_mixedFeaturePtsStructure.obj"
+Writing 7172 external edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_externalEdges.obj"
+Writing 10914 internal edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_internalEdges.obj"
+Writing 95 flat edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_flatEdges.obj"
+Writing 49 open edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_openEdges.obj"
+Writing 2637 multiple edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_multipleEdges.obj"
+Writing 8678 region edges to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_regionEdges.obj"
+Writing 20867 edge directions to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/extendedFeatureEdgeMesh/motorBike_edgeDirections.obj"
+
+Writing featureEdgeMesh to "/scratch/dhruv/OpenFOAM_testcases_Dhruv/OpenFOAM_v2412_cases/incompressible_simpleFoam_motorBike_refined/constant/triSurface/motorBike.eMesh"
+ExecutionTime = 1.31 s  ClockTime = 2 s
+
+End
+
