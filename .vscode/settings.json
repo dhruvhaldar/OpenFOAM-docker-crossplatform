@@ -41,5 +41,6 @@
     },
     "githubPullRequests.createOnPublishBranch": "never",
     "workbench.sideBar.location": "right",
-    "lldb.suppressUpdateNotifications": true
+    "lldb.suppressUpdateNotifications": true,
+    "git.ignoreLimitWarning": true
 }
