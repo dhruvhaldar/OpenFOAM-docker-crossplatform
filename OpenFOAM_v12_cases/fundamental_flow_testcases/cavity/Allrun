@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# Allrun script for OpenFOAM cavity test case
+
+# Source the OpenFOAM environment variables.  This is crucial!
+. $WM_PROJECT_DIR/etc/bashrc
+
+# Change to the case directory.  This script should be located
+# *in* the case directory (i.e., the one containing 0, constant, system).
+cd "$(dirname "$0")"
+
+# Clean the case.  This removes previous results.
+./Allclean
+
+# Generate the mesh using blockMesh.
+#  Assumes you are using blockMesh.  If you are using a different
+#  meshing tool, change this accordingly.  If the mesh is already
+#  present and does not need generating, comment this out.
+blockMesh
+
+# Check the mesh.  Useful for debugging.
+checkMesh
+
+# Run the appropriate solver.  Determine the correct solver
+# for your case (e.g., icoFoam, simpleFoam, etc.) and replace
+# "solverName" with it.  Redirect output to a log file.
+# solverName > log.solverName 2>&1
+icoFoam > log.icoFoam 2>&1
+
+#------------------------------------------------------------------------------
+#  Optional post-processing steps can be added here.
+#------------------------------------------------------------------------------
+
+# Example: Convert data for ParaView (if needed and if you're not using the -foam
+# option with the solver).  Adjust the options as necessary.
+#paraFoam -builtin #or 
+foamToVTK

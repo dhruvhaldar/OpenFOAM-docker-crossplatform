@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Allclean script for OpenFOAM cavity test case
+
+# Remove processor directories (for parallel running)
+rm -rf processor*
+
+# Remove the time directories (e.g., 0.1, 0.2, etc.)
+rm -rf [0-9]*
+
+# Remove any log files
+rm -f log.*
+
+# Optionally, remove the mesh (if you want a truly clean slate)
+# If you are generating the mesh with blockMesh, you may want to
+# uncomment the following line.  If the mesh is in the constant
+# directory and you do not want to regenerate it, LEAVE THIS COMMENTED.
+rm -rf constant/polyMesh
+
