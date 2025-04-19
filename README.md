@@ -28,7 +28,7 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 
 ## Favorite Testcases (solution files available in this git repository)
 ### Fundamental flow 
-1 `cavity`
+1. Simulation of Lid-driven Cavity Flow : `icoFoam/cavity` simulates the flow of a viscous, incompressible fluid within a square or rectangular cavity.
 
 
 ## 📚 Additional Information
