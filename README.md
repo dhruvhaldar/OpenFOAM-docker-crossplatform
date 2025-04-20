@@ -34,15 +34,15 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 ## 📚 Additional Information
 
 ### Paraview 
-Paraview (Software for post-processing) : https://www.paraview.org/download/
-Check license at https://www.paraview.org/license/
-A recent linux binary has been included in this repository, available at `Paraview/linux/5.13/`
+1. Paraview (Software for post-processing) : https://www.paraview.org/download/
+2. A recent linux binary has been included in this repository, available at `Paraview/linux/5.13/`
+3. [License](https://www.paraview.org/license/)
 
 #### 🛠️ Paraview Quick Start
 1. Extract the archive in `Paraview/5.13/linux/`
 2. Run `ParaView-5.13.3-MPI-Linux-Python3.10-x86_64/bin/paraview`
 
-Troubleshooting for Ubuntu 24.04 ([Error : Could not load the Qt platform plugin] (https://discourse.paraview.org/t/unable-to-launch-paraview-could-not-load-the-qt-platform-plugin/7339/8)): `apt-get install libxcb-xinerama0 libxcb-xinput-dev`
+Troubleshooting for Ubuntu 24.04 ([Error : Could not load the Qt platform plugin](https://discourse.paraview.org/t/unable-to-launch-paraview-could-not-load-the-qt-platform-plugin/7339/8)): `apt-get install libxcb-xinerama0 libxcb-xinput-dev`
 
 ### Contact
 For more details on how to use this setup, check out the documentation in this repository. If you encounter any issues, feel free to open an issue or contribute to the project! 🤝
