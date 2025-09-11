@@ -1,6 +1,0 @@
-# Solver information
-# Time        	U_solver      	Ux_initial    	Ux_final      	Ux_iters      	Uy_initial    	Uy_final      	Uy_iters      	Uz_initial    	Uz_final      	Uz_iters      	U_converged   	p_solver      	p_initial     	p_final       	p_iters       	p_converged   
-1             	smoothSolver	8.179940e-02	6.850520e-03	8	4.715600e-01	3.914070e-02	8	4.104430e-01	3.476990e-02	7	false	GAMG	1.000000e+00	6.845950e-03	6	true
-2             	smoothSolver	4.595160e-01	3.355710e-02	1	4.360210e-01	3.815580e-02	1	4.510300e-01	2.925600e-02	1	false	GAMG	1.494690e-02	1.396600e-04	4	true
-3             	smoothSolver	9.999740e-01	7.638530e-02	7	9.999980e-01	8.960640e-02	8	9.999980e-01	9.856320e-02	8	false	GAMG	8.662000e-02	7.478160e-04	4	true
-4             	smoothSolver	7.104240e-01	6.903620e-02	27	6.948520e-01	6.632340e-02	31	6.958960e-01	6.099240e-02	25	false	GAMG	9.999970e-01	1.000570e+00	1000	false
