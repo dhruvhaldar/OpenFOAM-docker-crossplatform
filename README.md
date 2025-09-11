@@ -1,8 +1,13 @@
-# 🚀 OpenFOAM Docker Image & My Favorite Testcases
+# 🚀 Easily run OpenFOAM testcases using Docker
 
 Welcome to the OpenFOAM Docker setup! This repository provides a convenient way to run latest OpenFOAM testcases using Docker. The Docker images are available on [Docker Hub](https://hub.docker.com/u/haldardhruv).
 
 ---
+
+## Before you start
+1. Docker should be installed on your system and accessible from command line (run `docker --version` to check). For Windows, follow the instructions [here](https://docs.docker.com/desktop/setup/install/windows-install/).
+
+2. For Linux, install Docker Engine, instructions available [here](https://docs.docker.com/engine/install/) based on your Linux distribution. For Ubuntu, follow the instructions [here](https://docs.docker.com/engine/install/ubuntu/). 
 
 ## 🛠️ Quick Start
 
