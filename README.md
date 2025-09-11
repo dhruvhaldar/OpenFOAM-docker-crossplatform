@@ -19,11 +19,11 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 ## 📦 Docker Images
 
 📦 OpenFOAMv2412 (By OpenCFD)
-1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam2412-dhruv`
+1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam:v2412`
 2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 2412](https://www.openfoam.com/news/main-news/openfoam-v2412)
 
 📦 OpenFOAMv12 (Community Edition)
-1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam2412-dhruv`
+1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam:v12`
 2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 12](https://openfoam.org/version/12/)
 
 ## Favorite Testcases (solution files available in this git repository)
