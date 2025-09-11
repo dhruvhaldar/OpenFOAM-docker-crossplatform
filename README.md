@@ -64,9 +64,10 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam:v12`
 2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 12](https://openfoam.org/version/12/)
 
-## Favorite Testcases (solution files available in this git repository)
+## Favorite Testcases (solution files available at `OpenFOAM_v12_cases/` and `OpenFOAM_v2412_cases/`)
 ### Fundamental flow 
 1. Simulation of Lid-driven Cavity Flow : `pimpleFoam/cavity` simulates the flow of a viscous, incompressible fluid within a square or rectangular cavity.
+2. Simulation of Motorbike Flow : `simpleFoam/motorBike` simulates the flow of a viscous, incompressible fluid within a motorbike.
 
 ## 📚 Additional Information
 
