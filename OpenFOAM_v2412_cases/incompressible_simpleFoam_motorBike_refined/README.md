@@ -1,1 +1,0 @@
-This folder contains the motorbike case from OpenFOAM v2412 purposefully refined. The files are compressed in .7z format, and can be extracted using [7-Zip](https://www.7-zip.org/). Simply start extracting `incompressible_simpleFoam_motorBike_refined.7z.001.7z`.
