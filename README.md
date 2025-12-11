@@ -64,21 +64,11 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
 1. **Image Name**: `haldardhruv/ubuntu_noble_openfoam:v12`
 2. **Platform**: [Ubuntu Noble](https://releases.ubuntu.com/noble/) with [OpenFOAM 12](https://openfoam.org/version/12/)
 
-## Favorite Testcases (solution files available at `OpenFOAM_v12_cases/` and `OpenFOAM_v2412_cases/`)
-### Fundamental flow 
-1. Simulation of Lid-driven Cavity Flow : `pimpleFoam/cavity` simulates the flow of a viscous, incompressible fluid within a square or rectangular cavity.
-2. Simulation of Motorbike Flow : `simpleFoam/motorBike` simulates the flow of a viscous, incompressible fluid within a motorbike.
-
 ## 📚 Additional Information
 
 ### Paraview 
 1. Paraview (Software for post-processing) : https://www.paraview.org/download/
-2. A recent linux binary has been included in this repository, available at `Paraview/linux/5.13/`
-3. [License](https://www.paraview.org/license/)
-
-#### 🛠️ Paraview Quick Start
-1. Extract the archive in `Paraview/5.13/linux/`
-2. Run `ParaView-5.13.3-MPI-Linux-Python3.10-x86_64/bin/paraview`
+2. [License](https://www.paraview.org/license/)
 
 Troubleshooting for Ubuntu 24.04 ([Error : Could not load the Qt platform plugin](https://discourse.paraview.org/t/unable-to-launch-paraview-could-not-load-the-qt-platform-plugin/7339/8)): `apt-get install libxcb-xinerama0 libxcb-xinput-dev`
 
