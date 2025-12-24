@@ -29,6 +29,7 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
    ```powershell
    docker commit running_container_name new_image_name
    ```
+   *Note: For security, the default `foam` user does not have sudo access. To install system packages, use `docker exec -u 0 -it container_name bash` or rebuild the image with the desired packages.*
    More details [here](https://docs.docker.com/reference/cli/docker/container/commit/).
 
 </details>
@@ -50,6 +51,7 @@ Welcome to the OpenFOAM Docker setup! This repository provides a convenient way 
    ```bash
    docker commit running_container_name new_image_name
    ```
+   *Note: For security, the default `foam` user does not have sudo access. To install system packages, use `docker exec -u 0 -it container_name bash` or rebuild the image with the desired packages.*
    More details [here](https://docs.docker.com/reference/cli/docker/container/commit/).
 
 </details>
