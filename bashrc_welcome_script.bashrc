@@ -42,7 +42,9 @@ EOF
   echo -e "${BOLD}Hostname :${NC} ${CYAN}$(hostname)${NC}"
   echo -e "${BOLD}Date/Time:${NC} ${YELLOW}$(date)${NC}"
   echo -e "${BOLD}Uptime   :${NC} ${BLUE}$(uptime -p 2>/dev/null || echo "N/A")${NC}"
-  echo -e "${BOLD}Load Avg :${NC} ${MAGENTA}$(cut -d ' ' -f1-3 /proc/loadavg)${NC}"
+  # Performance optimization: use read builtin instead of spawning cut
+  read -r load_one load_five load_fifteen rest < /proc/loadavg
+  echo -e "${BOLD}Load Avg :${NC} ${MAGENTA}${load_one} ${load_five} ${load_fifteen}${NC}"
 
   echo -e "${BOLD}${RED}Have a great day!${NC}"
   echo
