@@ -6,7 +6,6 @@ RUN apt-get update \
     && apt-get install -y \
         neovim \
         ssh \
-        sudo \
         neofetch \
         wget \
         rsync \
@@ -15,8 +14,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a new user called foam
-RUN useradd --user-group --create-home --shell /bin/bash foam \
-    && echo "foam ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v12
 RUN sh -c "wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc" \
