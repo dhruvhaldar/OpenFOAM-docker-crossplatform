@@ -19,7 +19,8 @@ welcome_message() {
   # clear
 
   # ASCII art banner (customize or replace with your own)
-  cat << "EOF"
+  # Bolt: Use printf to avoid spawning 'cat' process
+  printf '%s\n' '
 
  ██████╗ ██████╗ ███████╗███╗   ██╗███████╗ ██████╗  █████╗ ███╗   ███╗    
 ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔════╝██╔═══██╗██╔══██╗████╗ ████║    
@@ -35,12 +36,13 @@ welcome_message() {
    ██║   ███████╗███████║   ██║   ╚██████╗██║  ██║███████║███████╗███████║ 
    ╚═╝   ╚══════╝╚══════╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝                                    
                                            
-EOF
+'
 
   # Print a colorful welcome and system information
-  echo -e "${BOLD}${GREEN}Welcome, $(whoami)!${NC}"
-  echo -e "${BOLD}Hostname :${NC} ${CYAN}$(hostname)${NC}"
-  echo -e "${BOLD}Date/Time:${NC} ${YELLOW}$(date)${NC}"
+  # Bolt: Use shell builtins ($USER, $HOSTNAME, printf) to avoid spawning processes
+  echo -e "${BOLD}${GREEN}Welcome, ${USER}!${NC}"
+  echo -e "${BOLD}Hostname :${NC} ${CYAN}${HOSTNAME}${NC}"
+  echo -e "${BOLD}Date/Time:${NC} ${YELLOW}$(printf "%(%a %b %d %H:%M:%S %Z %Y)T\n" -1)${NC}"
   echo -e "${BOLD}Uptime   :${NC} ${BLUE}$(uptime -p 2>/dev/null || echo "N/A")${NC}"
   # Performance optimization: use read builtin instead of spawning cut
   read -r load_one load_five load_fifteen rest < /proc/loadavg
