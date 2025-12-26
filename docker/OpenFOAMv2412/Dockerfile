@@ -5,19 +5,21 @@ FROM ubuntu:noble
 RUN apt-get update \
     && apt-get install -y \
         neovim \
-        ssh \
+        openssh-client \
         neofetch \
         wget \
         rsync \
         curl \
         software-properties-common \
+        gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a new user called foam
 RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v2412
-RUN curl -s https://dl.openfoam.com/add-debian-repo.sh | bash \
+RUN wget -q -O - https://dl.openfoam.com/pubkey.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/openfoam.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture)] https://dl.openfoam.com/repos/deb noble main" > /etc/apt/sources.list.d/openfoam.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends openfoam2412-default \
     && rm -rf /var/lib/apt/lists/* \
