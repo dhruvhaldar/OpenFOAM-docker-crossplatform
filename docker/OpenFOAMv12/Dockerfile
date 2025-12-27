@@ -5,7 +5,7 @@ FROM ubuntu:noble
 RUN apt-get update \
     && apt-get install -y \
         neovim \
-        ssh \
+        openssh-client \
         neofetch \
         wget \
         rsync \
