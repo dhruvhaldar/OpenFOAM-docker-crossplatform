@@ -40,23 +40,52 @@ welcome_message() {
 
   # Print a colorful welcome and system information
   # Bolt: Use shell builtins ($USER, $HOSTNAME, printf) to avoid spawning processes
-  echo -e "${BOLD}${GREEN}Welcome, ${USER}!${NC}"
-  echo -e "${BOLD}Hostname :${NC} ${CYAN}${HOSTNAME}${NC}"
-  echo -e "${BOLD}Date/Time:${NC} ${YELLOW}$(printf "%(%a %b %d %H:%M:%S %Z %Y)T\n" -1)${NC}"
-  echo -e "${BOLD}Uptime   :${NC} ${BLUE}$(uptime -p 2>/dev/null || echo "N/A")${NC}"
+  # Calculate uptime using pure bash to avoid spawning 'uptime' process
+  local up_seconds days hours minutes output
+  if read -r up_seconds _ < /proc/uptime; then
+    up_seconds="${up_seconds%.*}"
+    days=$((up_seconds / 86400))
+    hours=$(( (up_seconds % 86400) / 3600 ))
+    minutes=$(( (up_seconds % 3600) / 60 ))
+    output="up"
+    if [ "$days" -gt 0 ]; then
+      output="$output $days day"
+      [ "$days" -ne 1 ] && output="${output}s"
+      output="${output},"
+    fi
+    if [ "$hours" -gt 0 ]; then
+      output="$output $hours hour"
+      [ "$hours" -ne 1 ] && output="${output}s"
+      output="${output},"
+    fi
+    if [ "$minutes" -gt 0 ] || [ "$output" = "up" ]; then
+      output="$output $minutes minute"
+      [ "$minutes" -ne 1 ] && output="${output}s"
+    else
+      output="${output%,}"
+    fi
+  else
+    output="N/A"
+  fi
+
+  printf "${BOLD}${GREEN}Welcome, ${USER}!${NC}\n"
+  printf "${BOLD}Hostname :${NC} ${CYAN}${HOSTNAME}${NC}\n"
+  printf "${BOLD}Date/Time:${NC} ${YELLOW}$(printf "%(%a %b %d %H:%M:%S %Z %Y)T" -1)${NC}\n"
+  printf "${BOLD}Uptime   :${NC} ${BLUE}${output}${NC}\n"
+
   # Performance optimization: use read builtin instead of spawning cut
   read -r load_one load_five load_fifteen rest < /proc/loadavg
-  echo -e "${BOLD}Load Avg :${NC} ${MAGENTA}${load_one} ${load_five} ${load_fifteen}${NC}"
+  printf "${BOLD}Load Avg :${NC} ${MAGENTA}${load_one} ${load_five} ${load_fifteen}${NC}\n"
 
-  echo -e "${BOLD}${RED}Have a great day!${NC}"
+  printf "${BOLD}${RED}Have a great day!${NC}\n"
   echo
 
   # Display custom shortcuts
-  echo -e "${BOLD}${WHITE}Shortcuts:${NC}"
-  echo -e "${BOLD}${YELLOW}c${NC} - Clear the terminal"
-  echo -e "${BOLD}${YELLOW}openfoam2412${NC} - Start OpenFOAM interactively"
-  echo -e "${BOLD}${YELLOW}e${NC} - Exit the terminal"
-  echo
+  printf "${BOLD}${WHITE}Shortcuts:${NC}\n"
+  printf "${BOLD}${YELLOW}c${NC} - Clear the terminal\n"
+  printf "${BOLD}${YELLOW}openfoam2412${NC} - Start OpenFOAM interactively\n"
+  printf "${BOLD}${YELLOW}e${NC} - Exit the terminal\n"
+  printf "\n"
 }
 
 # Call the function when a new shell session begins
