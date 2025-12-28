@@ -17,8 +17,8 @@ RUN apt-get update \
 RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v12
-RUN sh -c "wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc" \
-    && add-apt-repository http://dl.openfoam.org/ubuntu \
+RUN wget -O /etc/apt/trusted.gpg.d/openfoam.asc https://dl.openfoam.org/gpg.key \
+    && add-apt-repository https://dl.openfoam.org/ubuntu \
     && apt-get update \
     && apt-get install -y --no-install-recommends openfoam12 \
     && rm -rf /var/lib/apt/lists/* \
