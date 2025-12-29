@@ -17,19 +17,16 @@ RUN apt-get update \
 RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v12
-RUN sh -c "wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc" \
+# Bolt optimization: Removed 'sh -c', redundant 'apt-get update', and consolidated echo
+RUN wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc \
     && add-apt-repository http://dl.openfoam.org/ubuntu \
-    && apt-get update \
     && apt-get install -y --no-install-recommends openfoam12 \
     && rm -rf /var/lib/apt/lists/* \
     && echo "source /opt/openfoam12/etc/bashrc" >> /home/foam/.bashrc \
     && echo "export OMPI_MCA_btl_vader_single_copy_mechanism=none" >> /home/foam/.bashrc
 
 # Add custom aliases to the foam user's .bashrc
-RUN echo "alias e='exit'" >> /home/foam/.bashrc \
-    && echo "alias l='ls -lah'" >> /home/foam/.bashrc \
-    && echo "alias c='clear'" >> /home/foam/.bashrc \
-    && echo "cd /foam/OpenFOAM/12/work/OpenFOAM_v12_cases" >> /home/foam/.bashrc
+RUN printf "alias e='exit'\nalias l='ls -lah'\nalias c='clear'\ncd /foam/OpenFOAM/12/work/OpenFOAM_v12_cases\n" >> /home/foam/.bashrc
 
 # Set the default container user to foam
 USER foam
