@@ -17,9 +17,9 @@ RUN apt-get update \
 RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v12
-# Bolt optimization: Removed 'sh -c', redundant 'apt-get update', and consolidated echo
+# Bolt optimization: Use HTTPS for repository to avoid 301 redirect and improve security
 RUN wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc \
-    && add-apt-repository http://dl.openfoam.org/ubuntu \
+    && add-apt-repository https://dl.openfoam.org/ubuntu \
     && apt-get install -y --no-install-recommends openfoam12 \
     && rm -rf /var/lib/apt/lists/* \
     && echo "source /opt/openfoam12/etc/bashrc" >> /home/foam/.bashrc \
