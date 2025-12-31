@@ -41,7 +41,7 @@ welcome_message() {
   # Print a colorful welcome and system information
   # Bolt: Use shell builtins ($USER, $HOSTNAME, printf) to avoid spawning processes
   # Calculate uptime using pure bash to avoid spawning 'uptime' process
-  local up_seconds days hours minutes output
+  local up_seconds days hours minutes output current_time
   if read -r up_seconds _ < /proc/uptime; then
     up_seconds="${up_seconds%.*}"
     days=$((up_seconds / 86400))
@@ -68,9 +68,10 @@ welcome_message() {
     output="N/A"
   fi
 
+  printf -v current_time "%(%a %b %d %H:%M:%S %Z %Y)T" -1
   printf "${BOLD}${GREEN}Welcome, ${USER}!${NC}\n"
   printf "${BOLD}Hostname :${NC} ${CYAN}${HOSTNAME}${NC}\n"
-  printf "${BOLD}Date/Time:${NC} ${YELLOW}$(printf "%(%a %b %d %H:%M:%S %Z %Y)T" -1)${NC}\n"
+  printf "${BOLD}Date/Time:${NC} ${YELLOW}${current_time}${NC}\n"
   printf "${BOLD}Uptime   :${NC} ${BLUE}${output}${NC}\n"
 
   # Performance optimization: use read builtin instead of spawning cut
