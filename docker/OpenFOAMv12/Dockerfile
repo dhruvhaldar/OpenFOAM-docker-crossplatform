@@ -10,7 +10,7 @@ RUN apt-get update \
         wget \
         rsync \
         curl \
-        software-properties-common \
+        gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a new user called foam
@@ -18,8 +18,10 @@ RUN useradd --user-group --create-home --shell /bin/bash foam
 
 # Install OpenFOAM v12
 # Bolt optimization: Use HTTPS for repository to avoid 301 redirect and improve security
-RUN wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc \
-    && add-apt-repository https://dl.openfoam.org/ubuntu \
+RUN curl -fsSL https://dl.openfoam.org/gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/openfoam.gpg \
+    && . /etc/os-release \
+    && echo "deb [arch=$(dpkg --print-architecture)] https://dl.openfoam.org/ubuntu $VERSION_CODENAME main" > /etc/apt/sources.list.d/openfoam.list \
+    && apt-get update \
     && apt-get install -y --no-install-recommends openfoam12 \
     && rm -rf /var/lib/apt/lists/* \
     && echo "source /opt/openfoam12/etc/bashrc" >> /home/foam/.bashrc \
