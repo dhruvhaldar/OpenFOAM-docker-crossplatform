@@ -7,3 +7,8 @@
 **Vulnerability:** The Dockerfile used `curl | bash` to install the repository configuration. This bypasses package manager verification and allows execution of arbitrary code if the remote server or connection is compromised.
 **Learning:** Piping web content directly to a shell is a common but dangerous pattern that makes the build process dependent on the real-time integrity of an external script.
 **Prevention:** Download GPG keys and configuration files explicitly. Verify keys with `gpg` and write repository lists to defined locations (`/etc/apt/sources.list.d/`) manually, ensuring the build process is deterministic and verifiable.
+
+## 2025-12-27 - [Unused Build Dependencies]
+**Vulnerability:** The Dockerfile installed `software-properties-common` (providing `add-apt-repository`) but used manual file operations to configure repositories.
+**Learning:** Copy-pasting package lists often leads to bloated images with unused tools that increase the attack surface by pulling in unnecessary dependencies (e.g., Python).
+**Prevention:** Audit package lists and prune them to the minimum required for the build and runtime environment.
