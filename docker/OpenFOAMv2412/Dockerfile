@@ -10,7 +10,6 @@ RUN apt-get update \
         wget \
         rsync \
         curl \
-        software-properties-common \
         gnupg \
     && rm -rf /var/lib/apt/lists/*
 
