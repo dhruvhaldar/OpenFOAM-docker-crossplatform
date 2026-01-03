@@ -6,8 +6,6 @@ RUN apt-get update \
     && apt-get install -y \
         neovim \
         openssh-client \
-        neofetch \
-        wget \
         rsync \
         curl \
         gnupg \

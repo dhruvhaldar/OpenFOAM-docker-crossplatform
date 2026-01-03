@@ -12,3 +12,8 @@
 **Vulnerability:** The Dockerfile installed `software-properties-common` (providing `add-apt-repository`) but used manual file operations to configure repositories.
 **Learning:** Copy-pasting package lists often leads to bloated images with unused tools that increase the attack surface by pulling in unnecessary dependencies (e.g., Python).
 **Prevention:** Audit package lists and prune them to the minimum required for the build and runtime environment.
+
+## 2025-12-27 - [Attack Surface Reduction]
+**Vulnerability:** The Dockerfiles installed `neofetch` and `wget`, which were unnecessary for the container's primary function.
+**Learning:** Including "convenience" tools like system information fetchers (`neofetch`) or redundant downloaders (`wget` when `curl` is present) increases the container size and provides attackers with more tools ("Living off the Land") if the container is compromised.
+**Prevention:** Regularly audit installed packages and remove anything not strictly required for the application to run.
