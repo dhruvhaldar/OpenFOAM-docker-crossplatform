@@ -6,8 +6,6 @@ RUN apt-get update \
     && apt-get install -y \
         neovim \
         openssh-client \
-        neofetch \
-        wget \
         rsync \
         curl \
         gnupg \
@@ -26,10 +24,7 @@ RUN curl -fsSL https://dl.openfoam.com/pubkey.gpg | gpg --dearmor -o /etc/apt/tr
     && echo "export OMPI_MCA_btl_vader_single_copy_mechanism=none" >> /home/foam/.bashrc
 
 # Add custom aliases to the foam user's .bashrc
-RUN echo "alias e='exit'" >> /home/foam/.bashrc \
-    && echo "alias l='ls -lah'" >> /home/foam/.bashrc \
-    && echo "alias c='clear'" >> /home/foam/.bashrc \
-    && echo "cd /foam/OpenFOAM/2412/work/OpenFOAM_v2412_cases" >> /home/foam/.bashrc
+RUN printf "alias e='exit'\nalias l='ls -lah'\nalias c='clear'\ncd /foam/OpenFOAM/2412/work/OpenFOAM_v2412_cases\n" >> /home/foam/.bashrc
 
 # Set the default container user to foam
 USER foam
